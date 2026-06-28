@@ -7,7 +7,7 @@ import { User } from '../models/user';
 export class UserService {
   private readonly http = inject(HttpClient);
 
-  getUsers() {
-    return this.http.get<User[]>('https://jsonplaceholder.typicode.com/users');
+  getUsers(postId: number) {
+    return this.http.get<User[]>(`https://jsonplaceholder.typicode.com/users?postId=${postId}`);
   }
 }

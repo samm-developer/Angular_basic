@@ -33,9 +33,13 @@ export class PostDetail {
     { initialValue: null },
   );
 
-  protected readonly users = toSignal(this.userService.getUsers(), {
-    initialValue: [],
-  });
+  protected readonly users = toSignal(
+    this.route.paramMap.pipe(
+      map((params) => Number(params.get('id'))),
+      switchMap((id) => this.userService.getUsers(id)),
+    ),
+    { initialValue: [] },
+  );
 
   protected previousPost() {
     const id = this.postId();
