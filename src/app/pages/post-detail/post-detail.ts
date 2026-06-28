@@ -4,6 +4,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { map, switchMap } from 'rxjs';
 
 import { PostService } from '../../services/post.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-post-detail',
@@ -13,6 +14,7 @@ import { PostService } from '../../services/post.service';
 export class PostDetail {
   private readonly route = inject(ActivatedRoute);
   private readonly postService = inject(PostService);
+  private readonly userService = inject(UserService);
 
   protected readonly post = toSignal(
     this.route.paramMap.pipe(
@@ -21,4 +23,8 @@ export class PostDetail {
     ),
     { initialValue: null },
   );
+
+  protected readonly users = toSignal(this.userService.getUsers(), {
+    initialValue: [],
+  });
 }
