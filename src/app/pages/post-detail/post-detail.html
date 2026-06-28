@@ -6,6 +6,30 @@
     ← Back to posts
   </a>
 
+  <div class="mb-6 flex items-center justify-center gap-4">
+    <button
+      type="button"
+      (click)="previousPost()"
+      [disabled]="postId() <= minPostId"
+      class="flex h-10 w-10 items-center justify-center rounded-full border border-gray-300 bg-white text-xl font-medium text-gray-700 transition hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-40"
+      aria-label="Previous post"
+    >
+      −
+    </button>
+
+    <span class="min-w-12 text-center text-2xl font-semibold text-gray-900">{{ postId() }}</span>
+
+    <button
+      type="button"
+      (click)="nextPost()"
+      [disabled]="postId() >= maxPostId"
+      class="flex h-10 w-10 items-center justify-center rounded-full border border-gray-300 bg-white text-xl font-medium text-gray-700 transition hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-40"
+      aria-label="Next post"
+    >
+      +
+    </button>
+  </div>
+
   @if (post(); as post) {
     <article class="mb-8 rounded-lg border border-gray-200 bg-white p-8 shadow-sm">
       <p class="m-0 mb-2 text-xs font-medium uppercase tracking-wide text-gray-500">
