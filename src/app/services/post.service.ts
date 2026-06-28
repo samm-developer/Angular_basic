@@ -10,4 +10,8 @@ export class PostService {
   getPosts() {
     return this.http.get<Post[]>('https://jsonplaceholder.typicode.com/posts');
   }
+
+  getPost(id: number) {
+    return this.http.get<Post>(`https://jsonplaceholder.typicode.com/posts/${id}`);
+  }
 }
